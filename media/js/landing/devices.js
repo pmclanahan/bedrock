@@ -121,25 +121,19 @@ $(document).ready(function() {
     }
 });
 
-/* Set up the slides */
-$(document).ready(function() {
 
-  $("#slider").addClass("js");
-
-});
-
-// wait until document is fully scriptable
 $(function() {
+  $("#main").addClass("js");
 
-  $("#slider").scrollable({ circular: true, mousewheel: false }).navigator({
+  $(".slider-menu").tabs("#slider .slide", { effect: 'horizontal', rotate: false, history: true }).slideshow();
   
-    navi: ".slidenav",
-    naviItem: 'a',
-    activeClass: 'current',
-    history: true
-      
+  $(".slider-arrows a").click(function(){
+    $(this).blur();
+    return false;
   });
+
 });
+
 
 
 

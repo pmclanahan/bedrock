@@ -18,7 +18,7 @@
   <h1>{{ _('Firefox is Made for Your Devices') }}</h1>
 </hgroup>
 
-<nav class="menu-bar billboard slidenav">
+<nav class="menu-bar billboard slider-menu">
   <ul>
     <li><a href="#speed">{{ _('Desktops &amp; Laptops') }}</a></li>
     <li><a href="#smartphones">{{ _('Smartphones') }}</a></li>
@@ -37,53 +37,76 @@
     </nav>
 
     <div id="slider">
-      <div class="slide-window">
 
       <section class="slide" id="speed">
-        <div class="content">
-          <h2>{{ _('New Firefox is up to 7 times faster.') }}</h2>
-          <p><a href="#" class="button">Upgrade your Firefox &raquo;</a></p>
-        </div>
-        
-        <div id="gauge">
-          <img src="{{ media('img/landing/devices/needle.png') }}" alt="" id="needle">
-          <p id="gauge-slow">Old Firefox = Sadface</p>
-          <p id="gauge-fast">New Firefox = Yay!</p>
-          <div class="note" id="gauge-slow-note">
-            <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/en-US/firefox/">upgrade now!</a></p>
+        <div class="slide-content">
+          <div class="content">
+            <h2>{{ _('New Firefox is up to 7 times faster.') }}</h2>
+            <p><a href="#" class="button">Upgrade your Firefox &raquo;</a></p>
           </div>
-          <div class="note" id="gauge-fast-note">
-            <p><strong>Now we’re talking!</strong> Feels better, doesn’t it? Welcome to the future of the Web. It’s nice here.</p>
+          
+          <div id="gauge">
+            <img src="{{ media('img/landing/devices/needle.png') }}" alt="" id="needle">
+            <p id="gauge-slow">Old Firefox = Sadface</p>
+            <p id="gauge-fast">New Firefox = Yay!</p>
+            <div class="note" id="gauge-slow-note">
+              <p><strong>Seriously?</strong> That just isn’t going to cut it. Stop browsing in the past and <a href="/en-US/firefox/">upgrade now!</a></p>
+            </div>
+            <div class="note" id="gauge-fast-note">
+              <p><strong>Now we’re talking!</strong> Feels better, doesn’t it? Welcome to the future of the Web. It’s nice here.</p>
+            </div>
           </div>
-        </div>
-
-        <div id="non-fx">
-          <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
-          <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed?</p>
+  
+          <div id="non-fx">
+            <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
+            <p id="notdetected">Hey, looks like you’re not using Firefox as your browser. Why not grab Firefox and get up to speed?</p>
+          </div>
         </div>
       </section>
       
       <section class="slide" id="smartphones">
-        <h2>Smartphones</h2>
-        <p>Firefox in your pocket!</p>
+        <div class="slide-content">
+          <div class="content">
+            <h2>Type less, browse more, and get to the Web quickly and easily.</h2>
+            <p><a href="https://market.android.com/details?id=org.mozilla.firefox" class="button">Download Firefox for Android</a></p>
+          </div>
+          <p class="footnote">iPhone user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
+        </div>
       </section>
       
       <section class="slide" id="tablets">
-        <h2>Tablets</h2>
-        <p>Firefox on your couch!</p>
+        <div class="slide-content">
+          <div class="content">
+            <h2>Optimized for the size, shape, and the way you browse on tablets.</h2>
+            <p><a href="https://market.android.com/details?id=org.mozilla.firefox" class="button">Download Firefox for Android</a></p>
+          </div>
+          <p class="footnote">iPad user? <a href="http://support.mozilla.org/en-US/kb/will-firefox-work-my-mobile-device?s=firefox+on+iphone&r=1&e=sph&as=s#w_firefox-home-for-iphone">Click here.</a></p>
+        </div>
       </section>
       
       <section class="slide" id="addons">
-        <h2>Your Favorite Add-ons</h2>
-        <p>Add-ons to go!</p>
+        <div class="slide-content">
+          <div class="content">
+            <h2>Customize your browsing on both desktop and mobile.</h2>
+            <p><a href="#" class="button">Browse Add-ons &raquo;</a></p>
+          </div>
+          <ul class="addons">
+            <li>AdBlock Plus: https://addons.mozilla.org/en-us/mobile/addon/adblock-plus/?src=hp-dl-mostpopular</li>
+            <li>No Script: https://addons.mozilla.org/en-US/mobile/addon/noscript/?src=cb-dl-users</li>
+            <li>Speed Dail: https://addons.mozilla.org/en-US/mobile/addon/speed-dial/?src=ss</li>
+          </ul>
+        </div>
       </section>
       
       <section class="slide" id="sync">
-        <h2>Sync Your Gadgets</h2>
-        <p>Keep your gadgets in sync!</p>
+        <div class="slide-content">
+          <div class="content">
+            <h2>Your Web, <br>anywhere you go.</h2>
+            <p><a href="http://www.mozilla.org/en-US/mobile/sync/" class="button">Get in Sync &raquo;</a></p>
+          </div>
+        </div>
       </section>
 
-      </div>
     </div>
 
 </div>
