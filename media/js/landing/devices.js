@@ -127,9 +127,9 @@ $(function() {
 
   $(".slider-menu").tabs("#slider .slide", { effect: 'horizontal', rotate: false, history: true }).slideshow();
   
-  $(".slider-arrows a").click(function(){
+  $(".slider-arrows a").click(function(e){
     $(this).blur();
-    return false;
+    e.preventDefault();
   });
 
 });

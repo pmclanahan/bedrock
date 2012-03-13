@@ -8,7 +8,7 @@
   width: 992px;
   height: 285px;
   position: relative;
-  margin: 0 auto 24px;
+  margin: -24px auto 24px;
   position: relative;
   overflow: visible;
   -webkit-box-shadow: 0 0 0 1px #ffffff inset;
@@ -29,7 +29,6 @@
 }
 
 .slide-content {
-/*   background-image: -moz-linear-gradient(left, rgba(150,0,0,.25), rgba(0,150,0,.25)); */
   width: 848px;
   padding: 24px 72px;
   min-height: 280px;
@@ -39,6 +38,7 @@
 
 .slide {
   width: 100%;
+  margin: 0 0 24px;
 }
 
 .slide .content {
@@ -47,7 +47,7 @@
 }
 
 .slide .footnote {
-  .open-sans-light;
+  .open-sans;
   font-size: 11px;
 }
 
@@ -335,6 +335,85 @@ nav.slider-dots {
   position: absolute;
   bottom: 50px;
   right: 510px;
+}
+
+/* }}} */
+
+/* {{{ Add-ons */
+#addons .content {
+  width: 320px;
+}
+
+#addons .footnote {
+  width: 530px;
+  float: right;
+  margin: .5em 0 0;
+  text-align: center;
+}
+
+#addons-list {
+  list-style: none;
+  margin: 0 -48px 0 0;
+  width: 555px;
+  float: right;
+}
+
+#addons-list .addon {
+  width: 112px;
+  min-height: 185px;
+  padding: 12px 24px;
+  float: left;
+  margin: 0 24px 0 0;
+  background: #fff;
+  font-size: 11px;
+  line-height: 1.3;
+  .open-sans;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+
+#addons-list h3 {
+  font-size: 1.23em;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  padding: 60px 0 0;
+}
+
+#addons-list h3 a {
+  color: #484848;
+}
+
+#addons-list h3 img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -24px;
+}
+
+#addons-list .addon:last-child h3 img {
+  top: 8px;
+  margin-left: -16px;
+}
+
+#addons-list .desc {
+  margin: 0 0 1em;
+}
+
+#addons-list .add-to {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#addons-list .add-to li {
+  padding: 0;
+  margin: 0;
+}
+
+#addons-list .add-to a:after {
+  content: "\00A0\000BB"; 
+  font-size: 1.3em;
 }
 
 /* }}} */
