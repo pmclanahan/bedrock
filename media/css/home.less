@@ -24,6 +24,8 @@
     h3 {
         .span(3);
         margin: 0;
+        padding-bottom: 0.2em;
+        letter-spacing: -1px;
     }
     ul.features {
         .span(3);
@@ -39,7 +41,7 @@
             .small;
             span {
                 display: block;
-                padding: 0 4px;
+                padding: 0 6px;
                 border-left: 1px dotted @borderColor;
             }
             &:first-child span {
@@ -94,6 +96,8 @@
         h4 a:after,
         a h4:after {
             content: " »";
+            .open-sans-light;
+            font-weight: 300;
         }
     }
 }
@@ -185,7 +189,7 @@
 }
 
 /* }}} */
-/* {{{ Email From */
+/* {{{ Email Form */
 
 .thank,
 #home-updates {
@@ -229,6 +233,7 @@
         padding: 0;
         position: relative;
         width: 896px + 48px + 48px;
+        border-bottom: 1px solid #ddd;
         &:hover,
         &:active {
             text-decoration: none;
@@ -255,6 +260,7 @@
     }
     img {
         display: block;
+        background: @textColorPrimary;
         width: 100%;
         position: absolute;
         top: 0;
