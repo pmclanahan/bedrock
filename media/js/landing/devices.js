@@ -126,18 +126,34 @@ $(function() {
     $("#main").addClass("js");
 
     //$(".slider-menu").tabs("#slider .slide").slideshow({ effect: 'horizontal', rotate: false, history: true });
-    $('#slider').cycle({
-        fx: 'scrollHorz',
-        pager: '.slider-pager ul',
-        pagerAnchorBuilder: function(idx, el){
-            return '.slider-pager ul li:eq(' + idx + ') a';
+    var $slides = $('section.slide'),
+        anchor = document.location.hash,
+        getSlideIndex = function(id){
+            var idx = $slides.index($(id + '-slide'));
+            return idx == -1 ? 0 : idx;
         },
-        activePagerClass: 'current',
-        timeout: 0,
-        nowrap: true,
-        prev: '.slider-arrows li.prev a',
-        next: '.slider-arrows li.next a'
-    });
+        onSlideChange = function(){
+            var currhash = document.location.hash,
+                el = arguments[arguments.length - 1];
+            if (currhash !== '#' + el.id) {
+                document.location.hash = el.id.replace('-slide', '');
+            }
+        },
+        $slider = $('#slider').cycle({
+            fx: 'scrollHorz',
+            pager: '.slider-pager ul',
+            pagerAnchorBuilder: function(idx, el){
+                return '.slider-pager ul li:eq(' + idx + ') a';
+            },
+            activePagerClass: 'current',
+            timeout: 0,
+            nowrap: false,
+            prev: '.slider-arrows li.prev a',
+            next: '.slider-arrows li.next a',
+            startingSlide: getSlideIndex(anchor),
+            onPrevNextEvent: onSlideChange,
+            onPagerEvent: onSlideChange
+        });
 
 });
 
