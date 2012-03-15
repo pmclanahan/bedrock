@@ -18,7 +18,7 @@
   <h1>{{ _('Firefox is Made for Your Devices') }}</h1>
 </hgroup>
 
-<nav class="menu-bar billboard slider-menu">
+<nav class="menu-bar billboard slider-menu slider-pager">
   <ul>
     <li><a href="#speed">{{ _('Desktops &amp; Laptops') }}</a></li>
     <li><a href="#smartphones">{{ _('Smartphones') }}</a></li>
@@ -44,7 +44,7 @@
             <h2>{{ _('New Firefox is up to 7 times faster.') }}</h2>
             <p><a href="#" class="button">{{ _('Upgrade your Firefox') }} &raquo;</a></p>
           </div>
-          
+
           <div id="gauge">
             <img src="{{ media('img/landing/devices/needle.png') }}" alt="" id="needle">
             <p id="gauge-slow">{{ _('Old Firefox = Sadface') }}</p>
@@ -60,7 +60,7 @@
             {% endtrans %}
             </div>
           </div>
-  
+
           <div id="non-fx">
           {% trans %}
             <p id="detected">Hey, looks like you’re using %BROWSER%. Why not grab Firefox and get up to speed?</p>
@@ -69,7 +69,7 @@
           </div>
         </div>
       </section>
-      
+
       <section class="slide" id="smartphones">
         <div class="slide-content">
           <div class="content">
@@ -81,7 +81,7 @@
           {% endtrans %}
         </div>
       </section>
-      
+
       <section class="slide" id="tablets">
         <div class="slide-content">
           <div class="content">
@@ -93,7 +93,7 @@
           {% endtrans %}
         </div>
       </section>
-      
+
       <section class="slide" id="addons">
         <div class="slide-content">
           <div class="content">
@@ -102,7 +102,7 @@
           </div>
           <ul id="addons-list">
             <li class="addon">
-              <h3><a href="https://addons.mozilla.org/en-us/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3> 
+              <h3><a href="https://addons.mozilla.org/en-us/mobile/addon/adblock-plus/?src=fx-devices" rel="external"><img src="//static-ssl-cdn.addons.mozilla.net/img/uploads/addon_icons/1/1865-48.png" alt=""> {{ _('AdBlock Plus') }}</a></h3>
               <p class="desc">{{ _('Regain control and change the way that you view the Web.') }}</p>
               <ul class="add-to">
                 <li><a href="https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
@@ -123,7 +123,7 @@
               <ul class="add-to">
                 <li><a href="https://addons.mozilla.org/firefox/downloads/latest/4810/addon-4810-latest.xpi?src=fx-devices">{{ _('Add to Desktop') }}</a></li>
                 <li><a href="https://addons.mozilla.org/mobile/downloads/latest/4810/type:attachment/addon-4810-latest.xpi?src=fx-devices">{{ _('Add to Mobile') }}</a></li>
-              </ul>  
+              </ul>
             </li>
           </ul>
           {% trans amo_url="https://addons.mozilla.org" %}
@@ -131,7 +131,7 @@
           {% endtrans %}
         </div>
       </section>
-      
+
       <section class="slide" id="sync">
         <div class="slide-content">
           <div class="content">
@@ -145,7 +145,7 @@
 
 </div>
 
-    <nav class="slider-dots">
+    <nav class="slider-dots slider-pager">
       <ul>
         <li><a href="#speed">{{ _('Desktops &amp; Laptops') }}</a></li>
         <li><a href="#smartphones">{{ _('Smartphones') }}</a></li>

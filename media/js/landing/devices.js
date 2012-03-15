@@ -1,7 +1,7 @@
 /**
  * Scripts for the devices landing page
  */
- 
+
 $(document).ready(function() {
     var needle = $('#needle');
     var gauge = $('#gauge');
@@ -123,14 +123,21 @@ $(document).ready(function() {
 
 
 $(function() {
-  $("#main").addClass("js");
+    $("#main").addClass("js");
 
-  $(".slider-menu").tabs("#slider .slide", { effect: 'horizontal', rotate: false, history: true }).slideshow();
-  
-  $(".slider-arrows a").click(function(e){
-    $(this).blur();
-    e.preventDefault();
-  });
+    //$(".slider-menu").tabs("#slider .slide").slideshow({ effect: 'horizontal', rotate: false, history: true });
+    $('#slider').cycle({
+        fx: 'scrollHorz',
+        pager: '.slider-pager ul',
+        pagerAnchorBuilder: function(idx, el){
+            return '.slider-pager ul li:eq(' + idx + ') a';
+        },
+        activePagerClass: 'current',
+        timeout: 0,
+        nowrap: true,
+        prev: '.slider-arrows li.prev a',
+        next: '.slider-arrows li.next a'
+    });
 
 });
 
