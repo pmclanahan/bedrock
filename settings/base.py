@@ -168,8 +168,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-animate-css-rotate-scale.js',
             'js/site.js',
             'js/nav-main.js',
+            'js/libs/jquery.ba-hashchange.min.js',
             'js/libs/jquery.cycle.all.js',
-            'js/landing/devices.js'
+            'js/landing/devices.js',
         ),
     }
 }
