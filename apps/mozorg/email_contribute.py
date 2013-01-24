@@ -4,7 +4,7 @@
 
 from collections import namedtuple
 
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, mail_admins
 
 import basket
 import jingo
@@ -17,70 +17,57 @@ fa = namedtuple('FunctionalArea', ['id', 'name', 'subject', 'contacts'])
 LANG_FILES = 'mozorg/contribute'
 FUNCTIONAL_AREAS = (
     fa('support',
-        _('Helping Users'),
-        'Support',
-        ['jay@jaygarcia.com', 'rardila@mozilla.com', 'madasan@gmail.com'],
-    ),
+       _('Helping Users'),
+       'Support',
+       ['jay@jaygarcia.com', 'rardila@mozilla.com', 'madasan@gmail.com']),
     fa('qa',
-        _('Testing and QA'),
-        'QA',
-        ['qa-contribute@mozilla.org'],
-    ),
+       _('Testing and QA'),
+       'QA',
+       ['qa-contribute@mozilla.org']),
     fa('coding',
-        _('Coding'),
-        'Coding',
-        ['josh@joshmatthews.net'],
-    ),
+       _('Coding'),
+       'Coding',
+       ['josh@joshmatthews.net']),
     fa('marketing',
-        _('Marketing'),
-        'Marketing',
-        ['cnovak@mozilla.com'],
-    ),
+       _('Marketing'),
+       'Marketing',
+       ['cnovak@mozilla.com']),
     fa('localization',
-        _('Localization and Translation'),
-        'Localization',
-        ['rardila@mozilla.com', 'jbeatty@mozilla.com', 'arky@mozilla.com'],
-    ),
+       _('Localization and Translation'),
+       'Localization',
+       ['rardila@mozilla.com', 'jbeatty@mozilla.com', 'arky@mozilla.com']),
     fa('webdev',
-        _('Web Development'),
-        'Webdev',
-        ['lcrouch@mozilla.com'],
-    ),
+       _('Web Development'),
+       'Webdev',
+       ['lcrouch@mozilla.com']),
     fa('addons',
-        _('Add-ons'),
-        'Add-ons',
-        ['atsay@mozilla.com'],
-    ),
+       _('Add-ons'),
+       'Add-ons',
+       ['atsay@mozilla.com']),
     fa('design',
-        _('Visual Design'),
-        'Design',
-        ['mnovak@mozilla.com'],
-    ),
+       _('Visual Design'),
+       'Design',
+       ['mnovak@mozilla.com']),
     fa('documentation',
-        _('Documentation and Writing'),
-        'Documentation',
-        ['jswisher@mozilla.com'],
-    ),
+       _('Documentation and Writing'),
+       'Documentation',
+       ['jswisher@mozilla.com']),
     fa('education',
-        _('Education'),
-        'Education',
-        ['bsimon@mozillafoundation.org'],
-    ),
+       _('Education'),
+       'Education',
+       ['bsimon@mozillafoundation.org']),
     fa('other',
-        _('Other'),
-        '',
-        ['dboswell@mozilla.com'],
-    ),
+       _('Other'),
+       '',
+       ['dboswell@mozilla.com']),
     fa('suggestions',
-        _('I have a suggestion for Firefox'),
-        'Firefox Suggestions',
-        ['jay@jaygarcia.com'],
-    ),
+       _('I have a suggestion for Firefox'),
+       'Firefox Suggestions',
+       ['jay@jaygarcia.com']),
     fa('issues',
-        _('I need help with a Firefox issue'),
-        'Firefox issue',
-        ['jay@jaygarcia.com'],
-    ),
+       _('I need help with a Firefox issue'),
+       'Firefox issue',
+       ['jay@jaygarcia.com']),
 )
 
 INTEREST_CHOICES = (('', _('Area of interest?')),) + tuple(
@@ -89,9 +76,9 @@ FUNCTIONAL_AREAS_DICT = dict((area.id, area) for area in FUNCTIONAL_AREAS)
 
 LOCALE_CONTACTS = {
     'bn-BD': ['mahayalamkhan@gmail.com'],
-    'fr'   : ['contact@mozfr.org'],
+    'fr': ['contact@mozfr.org'],
     'es-ES': ['participa@mozilla-hispano.org'],
-    'nl'   : ['contribute@mozilla-nl.org'],
+    'nl': ['contribute@mozilla-nl.org'],
     'pt-BR': ['marcelo.araldi@yahoo.com.br'],
 }
 
@@ -143,7 +130,7 @@ def autorespond(request, data):
     """Send an auto-respond email based on chosen field of interest and locale.
 
     You can add localized responses by creating email messages in
-    mozorg/emails/<category.txt>
+    locale/<locale>/templates/mozorg/emails/<category>.txt
     """
     functional_area = FUNCTIONAL_AREAS_DICT[data['interest']]
 
@@ -164,6 +151,10 @@ def autorespond(request, data):
         msg = jingo.render_to_string(request, template, data)
     except TemplateNotFound:
         # No template found means no auto-response
+        mail_admins('Autoresponse Email Template Missing',
+                    'Did not send autoreponse for the contribute form ' +
+                    'because the following template was not found.\n\n' +
+                    template)
         return False
 
     # FIXME Why ?
