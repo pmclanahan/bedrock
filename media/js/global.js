@@ -26,9 +26,16 @@ function trigger_ie_download(link) {
 // attach an event to all the download buttons to trigger the special
 // ie functionality if on ie
 function init_download_links() {
+    var is_win8 = navigator.userAgent.indexOf('NT 6.2') !== -1;
     $('.download-link').each(function() {
-        var el = $(this);
-        el.click(function() {
+        var $el = $(this);
+        // Bug 846016: Win8 only needs 19.0.1.
+        // TODO: Remove after Fx 20 release.
+        if (is_win8 && $el.parent().is('.os_windows')) {
+            $el.attr('href', $el.attr('href').replace('firefox-19.0&', 'firefox-19.0.1&'));
+            $el.data('direct-link', $el.data('direct-link').replace('firefox-19.0&', 'firefox-19.0.1&'));
+        }
+        $el.click(function() {
             dcsMultiTrack('DCS.dcssip',
                           'www.mozilla.org',
                           'DCS.dcsuri',
@@ -38,7 +45,7 @@ function init_download_links() {
                           'WT.nv', 'Content',
                           'WT.ac', 'Download Firefox');
 
-            trigger_ie_download(el.data('direct-link'));
+            trigger_ie_download($el.data('direct-link'));
         });
     });
 }
@@ -88,7 +95,7 @@ function getFirefoxMasterVersion()
     return version;
 }
 
-        
+
 // Create text translation function using #strings element.
 var $strings = $('#strings');
 window.trans = function trans(stringId) {
