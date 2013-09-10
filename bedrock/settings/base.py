@@ -621,6 +621,7 @@ LESS_PREPROCESS = False
 LESS_BIN = 'lessc'
 
 MIDDLEWARE_CLASSES = (
+    'bedrock.mozorg.middleware.LangParamOverrideMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
@@ -819,3 +820,9 @@ PRESS_BLOGS = {
     'it': 'press-it/',
     'pl': 'press-pl/',
 }
+
+# exempts urls from the default lang query param function.
+# will be compared using `endswith()`
+FF_EXEMPT_LANG_PARAM_URLS = (
+    '/firefox/download/',
+)
