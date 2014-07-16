@@ -8,10 +8,10 @@ from django.utils.functional import cached_property
 
 from ordereddict import OrderedDict
 
-from bedrock.svnfiles import SVNFile
+from bedrock.externalfiles import ExternalFile
 
 
-class ForumsFile(SVNFile):
+class ForumsFile(ExternalFile):
     forum_line_re = re.compile(r'^((?:mozilla\.)?[a-z0-9\-\.]+)\s+(.*)$')
     title_line_re = re.compile(r'^:(.*)$')
 
