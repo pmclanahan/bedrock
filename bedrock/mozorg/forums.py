@@ -15,14 +15,23 @@ class ForumsFile(ExternalFile):
     forum_line_re = re.compile(r'^((?:mozilla\.)?[a-z0-9\-\.]+)\s+(.*)$')
     title_line_re = re.compile(r'^:(.*)$')
 
-    def __init__(self):
-        super(ForumsFile, self).__init__('forums')
+    def validate_content(self, content):
+        lines = content.split('\n')
+        forums = self._parse(lines)
+        # currently 15 categories
+        if not len(forums.keys()) > 10:
+            raise ValueError('Forums file truncated or corrupted.')
+
+        return content
 
     @cached_property
     def ordered(self):
+        return self._parse(self.readlines())
+
+    def _parse(self, lines):
         forums = OrderedDict()
         current_group = None
-        for line in self.readlines():
+        for line in lines:
             line = line.strip()
             if not line:
                 continue
@@ -44,6 +53,3 @@ class ForumsFile(ExternalFile):
                     })
 
         return forums
-
-
-forums_file = ForumsFile()

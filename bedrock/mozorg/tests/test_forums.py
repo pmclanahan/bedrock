@@ -2,8 +2,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from mock import Mock
-
 from ordereddict import OrderedDict
 
 from bedrock.mozorg import forums
@@ -35,11 +33,15 @@ FORUMS_GOOD_DICT['Applications and Projects'] = [
 
 class TestForums(TestCase):
     def setUp(self):
-        self.forums_file = forums.ForumsFile()
+        self.forums_file = forums.ForumsFile('forums')
 
     def test_forums_ordered(self):
         """Should give an ordered dict of forums from file."""
-        self.forums_file.readlines = Mock(return_value=FORUMS_GOOD_CONTENT)
-        for title, forums_list in self.forums_file.ordered.items():
+        for title, forums_list in self.forums_file._parse(FORUMS_GOOD_CONTENT).items():
             for i, forum in enumerate(forums_list):
                 self.assertDictEqual(forum, FORUMS_GOOD_DICT[title][i])
+
+    def test_forums_validation(self):
+        with self.assertRaises(ValueError):
+            # shouldn't be enough data
+            self.forums_file.validate_content(''.join(FORUMS_GOOD_CONTENT))

@@ -29,7 +29,7 @@ from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
                                   WebToLeadForm)
-from bedrock.mozorg.forums import forums_file
+from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
@@ -37,6 +37,7 @@ from bedrock.newsletter.forms import NewsletterFooterForm
 
 
 credits_file = CreditsFile('credits')
+forums_file = ForumsFile('forums')
 
 
 def csrf_failure(request, reason=''):

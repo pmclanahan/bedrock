@@ -919,6 +919,7 @@ EXTERNAL_FILES = {
     },
     'forums': {
         'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/about/forums/raw-ng-list.txt',
+        'type': 'bedrock.mozorg.forums.ForumsFile',
         'name': 'forums.txt',
     },
 }
