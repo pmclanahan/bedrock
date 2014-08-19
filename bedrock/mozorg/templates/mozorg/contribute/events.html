@@ -1,0 +1,160 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block page_title %}{{_('Community Events')}}{% endblock %}
+{% block body_id %}events{% endblock %}
+
+{% block page_css %}
+  {{ css('contribute-2015-map') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('contribute-2015-map') }}
+  {{ js('contribute-form') }}
+{% endblock %}
+
+{% block contrib_page_title %}{{ _('Community Events') }}{% endblock %}
+
+{% block contrib_content %}
+  <div id="map" data-mapbox="{{ settings.MAPBOX_TOKEN }}">
+  <!-- map -->
+  </div>
+
+  <section class="section events-list">
+    <div class="container">
+
+    <div class="events-head">
+      <form id="events-filter" method="get" action="#">
+        <fieldset>
+          <legend>{{ _('Find events') }}</legend>
+
+          <p class="filter">
+            <label for="filter-keyword">{{ _('By city, country, or event:') }}</label>
+            <input type="search" id="filter-keyword" name="keyword">
+          </p>
+
+          <p class="filter">
+            <label for="filter-date-mo">{{ _('By date:') }}</label>
+            <select id="filter-date-mo" name="month">
+              <option value="" selected>-- {{ _('month') }} --</option>
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+            <select id="filter-date-yr" name="year">
+              <option value="" selected>-- {{ _('year') }} --</option>
+              <option>2011</option>
+              <option>2012</option>
+              <option>2013</option>
+              <option>2014</option>
+              <option>2015</option>
+              <option>2016</option>
+            </select>
+          </p>
+
+          <p class="form-submit">
+            <button type="button" class="button-flat">{{ _('Find events') }}</button>
+          </p>
+        </fieldset>
+      </form>
+    </div>
+
+    <h3>Events</h3>
+    <table class="events-table">
+      <thead>
+        <tr>
+          <th scope="col">{{ _('Date') }}</th>
+          <th scope="col" class="event-name">{{ _('Event') }}</th>
+          <th scope="col">{{ _('City') }}</th>
+          <th scope="col">{{ _('Country') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><time datetime="2014-07-17">17 July, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">Hack the Web</a></th>
+          <td>Bucharest</td>
+          <td>Romania</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-07-17">17 July, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">Maker Party</a></th>
+          <td>Berlin</td>
+          <td>Germany</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-07-30">30 July, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">QMO Test Day</a></th>
+          <td>Mountain View</td>
+          <td>USA</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-08-06">6</time>-<time datetime="2014-08-08">8 August, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">MozCamp Asia</a></th>
+          <td>Singapore</td>
+          <td>Singapore</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-07-30">10 August, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">Firefox OS apps hacking</a></th>
+          <td>Madrid</td>
+          <td>Spain</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-07-17">17 July, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">Hack the Web</a></th>
+          <td>Bucharest</td>
+          <td>Romania</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-07-17">17 July, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">Maker Party</a></th>
+          <td>Berlin</td>
+          <td>Germany</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-07-30">30 July, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">QMO Test Day</a></th>
+          <td>Mountain View</td>
+          <td>USA</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-08-06">6</time>-<time datetime="2014-08-08">8 August, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">MozCamp Asia</a></th>
+          <td>Singapore</td>
+          <td>Singapore</td>
+        </tr>
+
+        <tr>
+          <td><time datetime="2014-07-30">10 August, 2014</time></td>
+          <th class="event-name" scope="row"><a href="#">Firefox OS apps hacking</a></th>
+          <td>Madrid</td>
+          <td>Spain</td>
+        </tr>
+      </tbody>
+    </table>
+
+    </div>
+  </section>
+
+{% endblock contrib_content %}

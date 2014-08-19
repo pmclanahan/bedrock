@@ -1,0 +1,101 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block body_id %}stories{% endblock %}
+
+{% block page_title %}{{_('Mozillian Stories')}} : Rubén {% endblock %}
+
+{% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
+
+{% block string_data %}
+  {# L10n: Used as a toggle to display more content. #}
+  data-more='{{_('More')}}'
+  {# L10n: Used as a toggle to display less content. #}
+  data-less='{{_('Less')}}'
+{% endblock %}
+
+{% block contrib_content %}
+  <section class="section stories-intro">
+    <div class="container">
+      <h2 class="section-title">#IAmAMozillian</h2>
+      <p class="section-tagline">{{ _('Meet Mozilla volunteers from all around the world. Learn about the projects they’ve worked on and see what they’re currently helping with.') }}</p>
+    </div>
+  </section>
+
+  <section class="section story-main">
+    <div class="container">
+      <h2 class="story-title">
+        Hi, I’m <b class="name">Rubén</b>, a Mozillian in <b class="country">Spain</b>
+      </h2>
+
+      <div class="story-intro">
+        <img class="photo" src="{{ media('img/contribute/person-blank.png') }}" alt="">
+        <p>
+          I’ve been collaborating with the Mozilla community since 2004, helping
+          with website localization, QA, user support and community marketing. I’ve
+          also helped organize events in Spain and performed IT tasks within the
+          Mozilla Hispano community.
+        </p>
+      </div>
+
+      <div class="story-areas">
+        <h3>I’m currently helping with:</h3>
+        <ul>
+          <li>Mozilla.org localization</li>
+          <li>Firefox OS launch in Spain</li>
+          <li>Mozilla Hispano mentorship program</li>
+          <li>Community events</li>
+        </ul>
+      </div>
+
+      <ul class="story-links">
+        <li><a href="#" class="twitter">@nukeador</a></li>
+        <li><a href="#" class="instragram">Instragram</a></li>
+        <li><a href="#" class="facebook">Facebook</a></li>
+      </ul>
+
+      <section class="story-more">
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit.
+        Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis
+        vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales
+        leo, eget blandit nunc tortor nibh. Nullam mollis. Ut justo. Suspendisse potenti.</p>
+
+        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus
+        libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id,
+        est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis.</p>
+      </section>
+
+    </div>
+  </section>
+
+  <section class="section stories-other">
+    <div class="container">
+      <h2 class="section-title">{{ _('Read more Mozillian stories') }}</h2>
+      <p class="section-tagline">
+      {% trans link_hashtag='https://twitter.com/search?q=%23IAmAMozillian' %}
+        Discover even more stories on Twitter with <a href="{{ link_hashtag }}">#IAmAMozillian</a>
+      {% endtrans %}
+      </p>
+      <ul class="stories">
+        <li class="person hcard">
+          <h3 class="fn given-name">Viking</h3>
+          <p class="meta">Indonesia &middot; {{ _('Activism') }}</p>
+          <a href="#" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-blank.png') }}" alt=""></a>
+        </li>
+        <li class="person hcard">
+          <h3 class="fn given-name">Stefania</h3>
+          <p class="meta">Romania &middot; {{ _('Testing') }}</p>
+          <a href="#" class="url">{{ _('Read her story') }} <img src="{{ media('img/contribute/person-blank.png') }}" alt=""></a>
+        </li>
+        <li class="person">
+          <img src="{{ media('img/contribute/person-blank.png') }}" alt="">
+          <h3 class="fn given-name">{{ _('More coming soon') }}</h3>
+        </li>
+      </ul>
+    </div>
+  </section>
+{% endblock contrib_content %}
+
