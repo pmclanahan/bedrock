@@ -8,7 +8,7 @@
 
 {% block story_content %}
   <h2 class="story-title">
-    {# L10n: These <b>s are for formatting so we can style the name and country. #}
+    {# L10n: These <b>s are for formatting. #}
     {{ _('Hi, I’m <b class="name">Rubén</b>, a Mozillian in <b class="country">Spain</b>') }}
   </h2>
 
@@ -45,14 +45,14 @@
 {% block stories_list %}
   <ul class="stories">
     <li class="person hcard">
-      <h3 class="fn given-name">Shreyas</h3>
-      <p class="meta">India &middot; {{ _('Teaching') }}</p>
-      <a href="{{ url('mozorg.contribute.story-shreyas') }}" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-shreyas.jpg') }}" alt=""></a>
-    </li>
-    <li class="person hcard">
       <h3 class="fn given-name">Faye</h3>
       <p class="meta">Philippines &middot; {{ _('Activism') }}</p>
       <a href="{{ url('mozorg.contribute.story-faye') }}" class="url">{{ _('Read her story') }} <img src="{{ media('img/contribute/person-faye.jpg') }}" alt=""></a>
+    </li>
+    <li class="person hcard">
+      <h3 class="fn given-name">Shreyas</h3>
+      <p class="meta">India &middot; {{ _('Teaching') }}</p>
+      <a href="{{ url('mozorg.contribute.story-shreyas') }}" class="url">{{ _('Read his story') }} <img src="{{ media('img/contribute/person-shreyas.jpg') }}" alt=""></a>
     </li>
     <li class="person hcard">
       <h3 class="fn given-name">Michael</h3>
@@ -61,4 +61,3 @@
     </li>
   </ul>
 {% endblock %}
-
