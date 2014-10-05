@@ -27,7 +27,7 @@
 {% block content %}
 <main role="main">
 
-{% if l10n_has_tag('contribute-2015') or settings.DEV %}
+{% if l10n_has_tag('contribute_2015') or settings.DEV %}
 {% block contrib_head %}
   <header class="page-head">
     <div class="contribute-masthead">
@@ -91,11 +91,11 @@
       {% block contrib_stats %}
       <ul class="head-stats">
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
-        <li class="stat-worldwide"><strong>8,722</strong> {{ _('active Mozillians worldwide') }}</li>
+        <li class="stat-worldwide"><strong>10,554</strong> {{ _('active Mozillians worldwide') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
         <li class="stat-events"><strong>154</strong> {{ _('upcoming events around the globe') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. The phrase "and counting" means there are always more being added; not sure how that idiom might translate so do your best :) #}
-        <li class="stat-local"><strong>80</strong> {{ _('languages and counting, on every continent') }}</li>
+        <li class="stat-local"><strong>87</strong> {{ _('languages and counting, on every continent') }}</li>
       </ul>
       {% endblock contrib_stats %}
     </div>
@@ -106,7 +106,7 @@
 
   {% block contrib_content %}{% endblock contrib_content %}
 
-{% if l10n_has_tag('contribute-2015') or settings.DEV %}
+{% if l10n_has_tag('contribute_2015') or settings.DEV %}
   {% block contrib_footer %}
   <section class="section contrib-extra">
     <div class="container">

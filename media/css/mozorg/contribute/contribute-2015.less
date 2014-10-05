@@ -192,6 +192,7 @@ textarea:focus {
 
 .section-tagline {
     font-size: 28px;
+    line-height: 1.2;
     text-align: center;
     .open-sans-light;
 }
@@ -483,7 +484,9 @@ textarea:focus {
         margin-top: 20px;
         text-align: center;
 
-        h2 {font-size:28px;}
+        h2 {
+            font-size: 28px;
+        }
 
         .cta {
             text-align: center;
@@ -574,11 +577,10 @@ textarea:focus {
     .clearfix;
 
     .person {
-        width: 200px;
-        float: left;
+        .span(3);
         position: relative;
-        padding: 210px 50px 0;
-        margin: 0 10px 40px;
+        padding: 210px 40px 0;
+        margin-bottom: 40px;
 
         &:nth-child(3n + 1) {
             clear: left;
@@ -700,17 +702,19 @@ textarea:focus {
     }
 
     .other-actions {
-        width: 660px;
+        .span(8);
+        float: none;
+        margin: 0 auto;
 
         li {
-            .span(4);
-            margin-bottom: 20px;
+            width: 46%;
+            float: left;
+            margin: 0 2% 20px;
         }
 
         a {
             border-color: #fff;
             color: #fff;
-            font-size: 16px;
             padding-left: 30px;
         }
     }
@@ -1765,4 +1769,122 @@ textarea:focus {
     background: #fff;
 }
 
+
+
+/*-------------------------------------------------------------------------*/
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #masthead,
+    .container {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    .page-title {
+        font-size: 60px;
+    }
+
+    .contribute-nav {
+        .span_narrow(10);
+
+        li {
+            .span_narrow(2);
+        }
+
+        .nav-cta {
+            .span_narrow(3);
+        }
+    }
+
+    .head-stats {
+        width: @widthTablet - (@gridGutterWidth * 2);
+
+        li {
+            .span_narrow(4);
+        }
+    }
+
+    #slideshow .section-title {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .slide-one .section-title {
+        margin-top: 0;
+    }
+
+    .landing-mission {
+        .mission-content {
+            .span_narrow(6);
+        }
+
+        .mission-video {
+            .span_narrow(6);
+
+            a:before {
+                width: 70px;
+                height: 70px;
+                top: 50px;
+                margin-left: -38px;
+                font-size: 36px;
+                line-height: 72px;
+            }
+        }
+    }
+
+    .stories .person {
+        .span_narrow(3);
+        padding: 210px 30px 0;
+
+        a {
+            width: auto;
+            margin: 0 -30px;
+        }
+    }
+
+    .steps li {
+        .span_narrow(3);
+        padding: 140px 30px 0;
+    }
+
+    .landing-notready {
+        .section-tagline {
+            margin-left: 120px;
+            margin-right: 120px;
+        }
+
+        .other-actions {
+            .span_narrow(8);
+            float: none;
+            margin: 0 auto;
+        }
+    }
+
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @Mobile Layout: 320px
+@media only screen and (max-width: @breakTablet) {
+
+    #masthead,
+    .container {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+}
+
+
+
+/*-------------------------------------------------------------------------*/
+// @Wide mobile Layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    #masthead,
+    .container {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+}
 
