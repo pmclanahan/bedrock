@@ -55,12 +55,13 @@
         </nav>
 
         {% block contrib_country_form %}
+{# No country switching for now...
         <form class="country-form" action="#">
           <p>
             <label for="country">{{ _('Your country') }}</label>
             <span class="select">
               <select id="country" name="country">
-                {# L10n: This is a hint used as a placeholder in a country selection dropdown menu. It should be short. #}
+                # L10n: This is a hint used as a placeholder in a country selection dropdown menu. It should be short. #
                 <option value="" disabled selected>{{ _('I live in&hellip;') }}</option>
                 <option value="al">Albania</option>
                 <option value="br">Brazil</option>
@@ -76,10 +77,11 @@
                 <option value="etc">and so on</option>
               </select>
             </span>
-            {# L10n: This is a label for a form submit button. #}
+            # L10n: This is a label for a form submit button. #
             <button type="submit">{{ _('Go') }}</button>
           </p>
         </form>
+#}
         {% endblock contrib_country_form %}
       </div>
     </div>
@@ -114,10 +116,7 @@
       <div class="extra-event">
         <h3>{{ _('Upcoming event') }}</h3>
         <a class="event-link" href="#">
-          <div class="event-map">
-            <time class="event-date" datetime="28-09-2014"><abbr class="date-month" title="September">Sep</abbr> <span class="date-day">28</span></time>
-            <img src="{{ media('img/contribute/mapsmall-fpo.png') }}" alt="">
-          </div>
+          <time class="event-date" datetime="28-09-2014"><abbr>Oct</abbr> <span class="date-day">28</span></time>
           <h4 class="event-title">Translating Firefox OS</h4>
           <p class="event-info"><span class="event-venue">Caixaforum</span> &middot; <span class="event-location">Madrid, Spain</span></p>
         </a>

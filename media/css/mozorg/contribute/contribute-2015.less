@@ -432,15 +432,15 @@ textarea:focus {
     .section-title {
         margin-top: 1em;
     }
-    background-image: url(/media/img/contribute/slide1-2000.jpg);
+    background-image: url(/media/img/contribute/bg-slide1-2000.jpg);
 }
 
 .slide-two {
-    background-image: url(/media/img/contribute/slide2-2000.jpg);
+    background-image: url(/media/img/contribute/bg-slide2-2000.jpg);
 }
 
 .slide-three {
-    background-image: url(/media/img/contribute/slide3-2000.jpg);
+    background-image: url(/media/img/contribute/bg-slide3-2000.jpg);
 }
 
 .cycle-pager {
@@ -792,47 +792,53 @@ textarea:focus {
 .extra-event {
     text-align: center;
 
-    .event-map {
+    .event-date {
+        width: 100px;
+        height: 80px;
+        padding: 45px 35px;
+        text-align: center;
+        display: block;
+        border: 5px solid @mozillared;
+        border-radius: 100%;
+        background: @mozillared;
+        color: #fff;
+        line-height: 1;
         position: relative;
-        margin: 20px 0 0;
+        left: 50%;
+        margin: 0 0 20px -90px;
+        font-size: 24px;
+        .transition(background .15s ease);
+    }
 
-        img {
-            border: 5px solid @mozillared;
-            border-radius: 100%;
-            margin: 0 auto 10px;
-        }
-
-        .event-date {
-            width: 70px;
-            height: 60px;
-            padding: 10px 5px;
-            text-align: center;
-            display: block;
-            border-radius: 100%;
-            background: @mozillared;
-            color: #fff;
-            position: absolute;
-            top: 0;
-            left: 30px;
-            .open-sans-light;
-            line-height: 1.1;
-            text-transform: uppercase;
-        }
-
-        .date-month {
-            display: block;
-            font-size: 16px;
-        }
-
-        .date-day {
-            display: block;
-            font-size: 32px;
-        }
+    .date-day {
+        display: block;
+        font-size: 60px;
+        margin-top: -4px;
     }
 
     .event-title {
         font-size: 20px;
         font-weight: bold;
+    }
+
+    .event-link p {
+        color: @textColorPrimary;
+    }
+
+    .event-link:hover,
+    .event-link:focus,
+    .event-link:active {
+        text-decoration: none;
+
+        .event-date {
+            background: lighten(@mozillared, 5%);
+        }
+
+        .event-title,
+        p {
+            color: darken(@linkBlue, 10%);
+            text-decoration: underline;
+        }
     }
 
     .events-all a {
@@ -1396,7 +1402,8 @@ textarea:focus {
 }
 
 .events-list {
-    background: #fff;
+    padding-top: 240px;
+    background: #fff url(/media/img/contribute/bg-stories-2000.jpg) center -380px no-repeat;
     text-align: left;
 }
 
@@ -1595,7 +1602,7 @@ textarea:focus {
 // Mozillian @Stories
 .stories-intro {
     .section-dark;
-    background: #000 url(/media/img/contribute/stories-fpo.jpg) center top no-repeat;
+    background: #000 url(/media/img/contribute/bg-stories-2000.jpg) center top no-repeat;
     padding-bottom: 100px;
 }
 

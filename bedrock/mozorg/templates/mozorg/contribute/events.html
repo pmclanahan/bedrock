@@ -8,24 +8,27 @@
 {% block body_id %}events{% endblock %}
 
 {% block page_css %}
-  {{ css('contribute-2015-map') }}
+  {{ css('contribute-2015') }}
 {% endblock %}
 
 {% block js %}
-  {{ js('contribute-2015-map') }}
+  {{ js('contribute-2015') }}
   {{ js('contribute-form') }}
 {% endblock %}
 
 {% block contrib_page_title %}{{ _('Community Events') }}{% endblock %}
 
 {% block contrib_content %}
+{# No map for now
   <div id="map" data-mapbox="{{ settings.MAPBOX_TOKEN }}">
   <!-- map -->
   </div>
+#}
 
   <section class="section events-list">
     <div class="container">
 
+{# No filtering for now
     <div class="events-head">
       <form id="events-filter" method="get" action="#">
         <fieldset>
@@ -72,8 +75,11 @@
         </fieldset>
       </form>
     </div>
+#}
 
+{# No heading needed here until we bring add the filering
     <h3>{{ _('Events') }}</h3>
+#}
     <table class="events-table">
       <thead>
         <tr>
