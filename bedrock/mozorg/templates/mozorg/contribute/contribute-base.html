@@ -97,11 +97,11 @@
       {% block contrib_stats %}
       <ul class="head-stats">
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
-        <li class="stat-worldwide"><strong>{{ l10n_format_number(num_mozillians) }}</strong> {{ _('active Mozillians worldwide') }}</li>
+        <li class="stat-worldwide"><strong>{{ num_mozillians|l10n_format_number }}</strong> {{ _('active Mozillians worldwide') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
-        <li class="stat-events"><strong>{{ l10n_format_number(num_events) }}</strong> {{ _('upcoming events around the globe') }}</li>
+        <li class="stat-events"><strong>{{ num_events|l10n_format_number }}</strong> {{ _('upcoming events around the globe') }}</li>
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. The phrase "and counting" means there are always more being added; not sure how that idiom might translate so do your best :) #}
-        <li class="stat-local"><strong>{{ l10n_format_number(num_langs) }}</strong> {{ _('languages and counting, on every continent') }}</li>
+        <li class="stat-local"><strong>{{ num_langs|l10n_format_number }}</strong> {{ _('languages and counting, on every continent') }}</li>
       </ul>
       {% endblock contrib_stats %}
     </div>
@@ -121,8 +121,7 @@
         <h3>{{ _('Upcoming event') }}</h3>
         {% set upcoming_event = next_event() %}
         <a class="event-link" href="{{ upcoming_event.url }}">
-        {{ l10n_format_date(upcoming_event.start_time) }}
-          <time class="event-date" datetime="{{ upcoming_event.start_time.isoformat() }}"><abbr title="{{ l10n_format_date(upcoming_event.start_time, 'MMMM') }}">{{ l10n_format_date(upcoming_event.start_time, 'MMM') }}</abbr> <span class="date-day">{{ upcoming_event.start_time|datetime('%d') }}</span></time>
+          <time class="event-date" datetime="{{ upcoming_event.start_time.isoformat() }}">{{ _(upcoming_event.month_abbr) }} <span class="date-day">{{ upcoming_event.day_of_month }}</span></time>
           <h4 class="event-title">{{ upcoming_event.title }}</h4>
           <p class="event-info"><span class="event-location">{{ upcoming_event.location }}</span></p>
         </a>
