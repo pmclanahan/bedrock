@@ -15,7 +15,7 @@ from django.utils.encoding import smart_str, force_text
 import tower
 
 from . import urlresolvers
-from .helpers import urlparams
+from .templatetags.jinja_helpers import urlparams
 
 
 class LocaleURLMiddleware(object):

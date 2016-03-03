@@ -65,7 +65,7 @@ https://github.com/alex/django-filter/archive/e58e15ebf27e90cc0d47b7e58a2181e915
 https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser \
     --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
 https://github.com/pmclanahan/rna/archive/django-1.8-drf-upgrade.tar.gz#egg=django-mozilla-rna==2.0 \
-    --hash=sha256:5086adc9b8a626149e0a2a86aacf89a3098d63a8d0f48fc792c741b26a5b9301
+    --hash=sha256:226755f1aea0baa2d6088172ad387cd325b13d79caa21b4efc736a059e7c0b20
 https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904afa.tar.gz#egg=tweepy \
     --hash=sha256:a9b7728d94beeba624fae4be378542a222cf1c5cf845b916ba9a8b3f8f9e4559
 https://github.com/waylan/Python-Markdown/archive/d7fa7931bec55eec5498cd79882b770d1110b9b7.tar.gz#egg=Markdown \
@@ -118,7 +118,5 @@ python-decouple==2.3 \
     --hash=sha256:b9fbf747fa8e711d330f2f436b9b2ecf5eed9eb67a637ca81abcd11c2abedec8
 django-sslify==0.2.7 \
     --hash=sha256:f6bfd21048c7dfc95b39659a3da77775d6db1c1f7a745805ccc6c6138f783b6d
-South==1.0.2 \
-    --hash=sha256:d360bd31898f9df59f6faa786551065bba45b35e7ee3c39b381b4fbfef7392f4
 django-jinja==2.1.2 \
     --hash=sha256:fc2b6a65201b27711e800eb2e1262ff42a32f027bd2267e34121f1bd2bd6b933
