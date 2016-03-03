@@ -1,6 +1,6 @@
-Django==1.7.11 \
-    --hash=sha256:100164556897c1219f33706e63a656b8848d33d09b0161e2deefcc50978cf62d \
-    --hash=sha256:2039144fce8f1b603d03fa5a5643578df1ad007c4ed41a617f02a3943f7059a1
+Django==1.8.10 \
+    --hash=sha256:471b41cb53d675138475b488c429424ed143e57ad755a2c8ab1206ac30490284 \
+    --hash=sha256:d2e5b11eb694984957378419f809b7205598326373d509d0262f9f84b17d1a23
 django-pipeline==1.5.4 \
     --hash=sha256:c711e88615ef37b2359ce30978eae7c65e54924aeb043229656c5e239065e596 \
     --hash=sha256:a5a909f403d0ea56f211618949ff4e378f16e5a996bde819bd2b5b0e7a9bb8fe
@@ -64,8 +64,8 @@ https://github.com/alex/django-filter/archive/e58e15ebf27e90cc0d47b7e58a2181e915
     --hash=sha256:185c89fc9b656c010659452785e9e87749cf4b17544979d38514dd531f631bab
 https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser \
     --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
-https://github.com/mozilla/rna/archive/fdcee9e4ba4f860483eaf9476be02d05b7a81f6e.tar.gz#egg=rna==1.1 \
-    --hash=sha256:c666c6879c28a4d91c94ee88ab557dbd44f48656185fea0f3e88a04d687df55f
+https://github.com/pmclanahan/rna/archive/django-1.8-drf-upgrade.tar.gz#egg=django-mozilla-rna==2.0 \
+    --hash=sha256:5086adc9b8a626149e0a2a86aacf89a3098d63a8d0f48fc792c741b26a5b9301
 https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904afa.tar.gz#egg=tweepy \
     --hash=sha256:a9b7728d94beeba624fae4be378542a222cf1c5cf845b916ba9a8b3f8f9e4559
 https://github.com/waylan/Python-Markdown/archive/d7fa7931bec55eec5498cd79882b770d1110b9b7.tar.gz#egg=Markdown \
@@ -120,3 +120,5 @@ django-sslify==0.2.7 \
     --hash=sha256:f6bfd21048c7dfc95b39659a3da77775d6db1c1f7a745805ccc6c6138f783b6d
 South==1.0.2 \
     --hash=sha256:d360bd31898f9df59f6faa786551065bba45b35e7ee3c39b381b4fbfef7392f4
+django-jinja==2.1.2 \
+    --hash=sha256:fc2b6a65201b27711e800eb2e1262ff42a32f027bd2267e34121f1bd2bd6b933

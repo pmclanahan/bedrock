@@ -29,7 +29,7 @@ def path(*args):
 DEV = config('DEV', cast=bool, default=False)
 PROD = config('PROD', cast=bool, default=False)
 
-DEBUG = TEMPLATE_DEBUG = config('DEBUG', cast=bool, default=False)
+DEBUG = config('DEBUG', cast=bool, default=False)
 
 # Production uses MySQL, but Sqlite should be sufficient for local development.
 # Our CI server tests against MySQL.
@@ -227,10 +227,6 @@ CANONICAL_URL = 'https://www.mozilla.org'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = config('SECRET_KEY', default='ssssshhhhh')
 
-TEMPLATE_DIRS = (
-    path('locale'),
-)
-
 
 # has to stay a callable because tower expects that.
 def JINJA_CONFIG():
@@ -423,14 +419,7 @@ LOCALE_PATHS = (
     str(LOCALES_PATH),
 )
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'jingo.Loader',
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
+_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.csrf',
     'django.core.context_processors.debug',
@@ -445,8 +434,48 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'bedrock.mozorg.context_processors.funnelcake_param',
     'bedrock.mozorg.context_processors.facebook_locale',
     'bedrock.firefox.context_processors.latest_firefox_versions',
-    'jingo_minify.helpers.build_ids',
 )
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'DIRS': [path('locale')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            # Use jinja2/ for jinja templates
+            'app_dirname': 'jinja2',
+            # Don't figure out which template loader to use based on
+            # file extension
+            'match_extension': '',
+            'newstyle_gettext': True,
+            'context_processors': _CONTEXT_PROCESSORS,
+            'undefined': 'jinja2.Undefined',
+            'extensions': [
+                'lib.l10n_utils.template.i18n',
+                'jinja2.ext.do',
+                'jinja2.ext.with_',
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.autoescape',
+                'lib.l10n_utils.template.l10n_blocks',
+                'lib.l10n_utils.template.lang_blocks',
+                'django_jinja.builtins.extensions.CsrfExtension',
+                'django_jinja.builtins.extensions.StaticFilesExtension',
+                'django_jinja.builtins.extensions.DjangoFiltersExtension',
+                'jingo_markdown.extensions.MarkdownExtension',
+                'pipeline.templatetags.ext.PipelineExtension',
+            ],
+        }
+    },
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': DEBUG,
+            'context_processors': _CONTEXT_PROCESSORS,
+        }
+    },
+]
 
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
