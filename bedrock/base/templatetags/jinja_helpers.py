@@ -2,35 +2,40 @@ import datetime
 import urllib
 import urlparse
 
-from django.contrib.staticfiles.storage import staticfiles_storage
-from django.template import defaultfilters
 from django.utils.encoding import smart_str
-from django.utils.html import strip_tags
 
-from jingo import register
 import jinja2
+from django_jinja import library
+from markdown import markdown as _markdown
 
-from .urlresolvers import reverse
-
-# Yanking filters from Django.
-register.filter(strip_tags)
-register.filter(defaultfilters.timesince)
-register.filter(defaultfilters.truncatewords)
+from ..urlresolvers import reverse
 
 
-@register.function
+@library.global_function
 def thisyear():
     """The current year."""
     return jinja2.Markup(datetime.date.today().year)
 
 
-@register.function
+@library.global_function
 def url(viewname, *args, **kwargs):
-    """Helper for Django's ``reverse`` in templates."""
+    """Helper for our locale-aware ``reverse`` in templates."""
     return reverse(viewname, args=args, kwargs=kwargs)
 
 
-@register.filter
+@library.filter
+def markdown(text, *args, **kwargs):
+    """
+    Parse text with markdown library.
+    :param text:   - text for parsing;
+    :param args:   - markdown arguments (http://pythonhosted.org/Markdown/reference.html#markdown)
+    :param kwargs: - markdown keyword arguments (http://pythonhosted.org/Markdown/reference.html#markdown)
+    :return:       - parsed result.
+    """
+    return jinja2.Markup(_markdown(text, *args, **kwargs))
+
+
+@library.filter
 def urlparams(url_, hash=None, **query):
     """Add a fragment and/or query paramaters to a URL.
 
@@ -60,14 +65,9 @@ def _urlencode(items):
         return urllib.urlencode([(k, smart_str(v)) for k, v in items])
 
 
-@register.filter
+@library.filter
 def urlencode(txt):
     """Url encode a path."""
     if isinstance(txt, unicode):
         txt = txt.encode('utf-8')
     return urllib.quote_plus(txt)
-
-
-@register.function
-def static(path):
-    return staticfiles_storage.url(path)

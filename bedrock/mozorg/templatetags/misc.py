@@ -8,12 +8,14 @@ from os import path
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
 from django.template.defaultfilters import slugify as django_slugify
+from django.template.loader import render_to_string
 
 import bleach
-import jingo
 import jinja2
+from django_jinja import library
+from django_jinja.builtins.filters import static
+
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.helpers import static
 from bedrock.firefox.firefox_details import firefox_ios
 
 
@@ -36,7 +38,7 @@ def convert_to_high_res(url):
     return add_string_to_image_url(url, 'high-res')
 
 
-@jingo.register.function
+@library.global_function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     url = reverse(viewname, args=args, kwargs=kwargs)
@@ -49,7 +51,7 @@ def url(viewname, *args, **kwargs):
     return url
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def secure_url(ctx, viewname=None):
     """Retrieve a full secure URL especially for form submissions"""
@@ -81,7 +83,7 @@ def l10n_img_file_name(ctx, url):
     return path.join('img', 'l10n', locale, url)
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def l10n_img(ctx, url):
     """Output the url to a localized image.
@@ -120,7 +122,7 @@ def l10n_img(ctx, url):
     return static(l10n_img_file_name(ctx, url))
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def l10n_css(ctx):
     """
@@ -162,7 +164,7 @@ def l10n_css(ctx):
     return jinja2.Markup(markup)
 
 
-@jingo.register.function
+@library.global_function
 def field_with_attrs(bfield, **kwargs):
     """Allows templates to dynamically add html attributes to bound
     fields from django forms"""
@@ -170,7 +172,7 @@ def field_with_attrs(bfield, **kwargs):
     return bfield
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def platform_img(ctx, url, optional_attributes=None):
     optional_attributes = optional_attributes or {}
@@ -212,7 +214,7 @@ def platform_img(ctx, url, optional_attributes=None):
     return jinja2.Markup(markup)
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def high_res_img(ctx, url, optional_attributes=None):
     url_high_res = convert_to_high_res(url)
@@ -240,7 +242,7 @@ def high_res_img(ctx, url, optional_attributes=None):
     return jinja2.Markup(markup)
 
 
-@jingo.register.function
+@library.global_function
 def video(*args, **kwargs):
     """
     HTML5 Video tag helper.
@@ -302,11 +304,10 @@ def video(*args, **kwargs):
     data.update(**kwargs)
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
-    return jinja2.Markup(jingo.env.get_template(
-        'mozorg/videotag.html').render(data))
+    return jinja2.Markup(render_to_string('mozorg/videotag.html', data))
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def press_blog_url(ctx):
     """Output a link to the press blog taking locales into account.
@@ -343,7 +344,7 @@ def press_blog_url(ctx):
     return settings.PRESS_BLOG_ROOT + settings.PRESS_BLOGS[locale]
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def donate_url(ctx, source=''):
     """Output a donation link to the donation page formatted using settings.DONATE_PARAMS
@@ -379,7 +380,7 @@ def donate_url(ctx, source=''):
         currency=donate_url_params['currency'])
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def firefox_twitter_url(ctx):
     """Output a link to Twitter taking locales into account.
@@ -416,7 +417,7 @@ def firefox_twitter_url(ctx):
     return settings.FIREFOX_TWITTER_ACCOUNTS[locale]
 
 
-@jingo.register.filter
+@library.filter
 def absolute_url(url):
     """
     Return a fully qualified URL including a protocol especially for the Open
@@ -448,7 +449,7 @@ def absolute_url(url):
     return prefix + url
 
 
-@jingo.register.function
+@library.global_function
 def releasenotes_url(release):
     prefix = 'aurora' if release.channel == 'Aurora' else 'release'
     if release.product == 'Firefox for Android':
@@ -459,7 +460,7 @@ def releasenotes_url(release):
         return reverse('firefox.desktop.releasenotes', args=(release.version, prefix))
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def firefox_ios_url(ctx, ct_param=None):
     """
@@ -502,7 +503,7 @@ def firefox_ios_url(ctx, ct_param=None):
     return link
 
 
-@jingo.register.filter
+@library.filter
 def htmlattr(_list, **kwargs):
     """
     Assign an attribute to elements, like jQuery's attr function. The _list
@@ -524,14 +525,14 @@ def htmlattr(_list, **kwargs):
     return _list
 
 
-@jingo.register.filter
+@library.filter
 def shuffle(_list):
     """Return a shuffled list"""
     random.shuffle(_list)
     return _list
 
 
-@jingo.register.filter
+@library.filter
 def slugify(text):
     """
     Converts to lowercase, removes non-word characters (alphanumerics and
@@ -541,6 +542,6 @@ def slugify(text):
     return django_slugify(text)
 
 
-@jingo.register.filter
+@library.filter
 def bleach_tags(text):
     return bleach.clean(text, tags=[], strip=True).replace('&amp;', '&')

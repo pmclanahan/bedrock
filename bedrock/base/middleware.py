@@ -10,9 +10,8 @@ from warnings import warn
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
+from django.utils import translation
 from django.utils.encoding import smart_str, force_text
-
-import tower
 
 from . import urlresolvers
 from .templatetags.jinja_helpers import urlparams
@@ -74,4 +73,7 @@ class LocaleURLMiddleware(object):
 
         request.path_info = '/' + prefixer.shortened_path
         request.locale = prefixer.locale
-        tower.activate(prefixer.locale)
+        # prefixer.locale can be '', but we need a real locale code to activate
+        # otherwise the request uses the previously handled request's
+        # translations.
+        translation.activate(prefixer.locale or settings.LANGUAGE_CODE)

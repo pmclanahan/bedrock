@@ -3,8 +3,9 @@ from collections import OrderedDict
 from django.core.cache import cache
 from django.conf import settings
 
-import jingo
 import jinja2
+from django.template.loader import render_to_string
+from django_jinja import library
 
 from bedrock.firefox.models import FirefoxOSFeedLink
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
@@ -48,7 +49,7 @@ def ios_builds(channel, builds=None):
     return builds
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def download_firefox(ctx, channel='release', small=False, icon=True,
                      platform='all', dom_id=None, locale=None, simple=False,
@@ -164,13 +165,11 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
         'check_old_fx': check_old_fx and simple,
     }
 
-    html = jingo.render_to_string(ctx['request'],
-                                  'firefox/includes/download-button.html',
-                                  data)
+    html = render_to_string('firefox/includes/download-button.html', data, request=ctx['request'])
     return jinja2.Markup(html)
 
 
-@jingo.register.function
+@library.global_function
 def firefox_url(platform, page, channel=None):
     """
     Return a product-related URL like /firefox/all/ or /mobile/beta/notes/.
@@ -211,7 +210,7 @@ def firefox_url(platform, page, channel=None):
     return reverse('firefox.%s' % page, kwargs=kwargs)
 
 
-@jingo.register.function
+@library.global_function
 def firefox_os_feed_links(locale, force_cache_refresh=False):
     if locale in settings.FIREFOX_OS_FEED_LOCALES:
         cache_key = 'firefox-os-feed-links-' + locale
@@ -228,7 +227,7 @@ def firefox_os_feed_links(locale, force_cache_refresh=False):
         return firefox_os_feed_links(locale.split('-')[0])
 
 
-@jingo.register.function
+@library.global_function
 def firefox_os_blog_link(locale):
     try:
         return settings.FXOS_PRESS_BLOG_LINKS[locale]

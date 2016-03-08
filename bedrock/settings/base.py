@@ -227,23 +227,6 @@ CANONICAL_URL = 'https://www.mozilla.org'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = config('SECRET_KEY', default='ssssshhhhh')
 
-
-# has to stay a callable because tower expects that.
-def JINJA_CONFIG():
-    return {
-        'extensions': [
-            'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-            'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
-            'lib.l10n_utils.template.lang_blocks',
-            'jingo_markdown.extensions.MarkdownExtension',
-            'pipeline.templatetags.ext.PipelineExtension',
-        ],
-        # Make None in templates render as ''
-        'finalize': lambda x: x if x is not None else '',
-        'auto_reload': True,
-    }
-
-
 MEDIA_URL = config('MEDIA_URL', default='/user-media/')
 MEDIA_ROOT = config('MEDIA_ROOT', default=path('media'))
 STATIC_URL = config('STATIC_URL', default='/media/')
@@ -257,13 +240,6 @@ STATICFILES_FINDERS = (
 )
 STATICFILES_DIRS = (
     path('media'),
-)
-
-JINGO_EXCLUDE_APPS = (
-    'registration',
-    'rest_framework',
-    'rna',
-    'waffle',
 )
 
 PIPELINE_DISABLE_WRAPPER = True
@@ -325,7 +301,6 @@ MIDDLEWARE_CLASSES = [middleware for middleware in (
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
-    'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
     'bedrock.mozorg.middleware.CrossOriginResourceSharingMiddleware',
 ) if middleware]
 
@@ -343,12 +318,9 @@ INSTALLED_APPS = (
     'django_nose',
 
     # L10n
-    'tower',  # for ./manage.py extract
     'product_details',
 
     # third-party apps
-    'jingo_markdown',
-    # 'jingo_minify',
     'django_statsd',
     'pagedown',
     'rest_framework',
@@ -461,7 +433,6 @@ TEMPLATES = [
                 'django_jinja.builtins.extensions.CsrfExtension',
                 'django_jinja.builtins.extensions.StaticFilesExtension',
                 'django_jinja.builtins.extensions.DjangoFiltersExtension',
-                'jingo_markdown.extensions.MarkdownExtension',
                 'pipeline.templatetags.ext.PipelineExtension',
             ],
         }

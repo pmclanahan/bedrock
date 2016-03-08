@@ -22,8 +22,8 @@ from django.utils import translation
 from django.utils.functional import lazy
 
 from jinja2 import Markup
-from tower import tweak_message
 from product_details import product_details
+from puente.utils import collapse_whitespace
 
 from lib.l10n_utils.utils import ContainsEverything
 
@@ -108,7 +108,7 @@ def translate(text, files):
     if lang == settings.LANGUAGE_CODE:
         return Markup(text)
 
-    tweaked_text = tweak_message(text)
+    tweaked_text = collapse_whitespace(text)
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
