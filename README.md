@@ -1,6 +1,8 @@
 bedrock
 =======
 
+THIS IS A TEST
+
 *bedrock* is the code name of mozilla.org. It is as shiny,
 awesome, and open sourcy as always. Perhaps even a little more.
 
